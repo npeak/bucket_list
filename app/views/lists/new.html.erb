@@ -1,2 +1,7 @@
-<h1>Lists#new</h1>
-<p>Find me in app/views/lists/new.html.erb</p>
+<h1>Type in an item you would like to add to your bucket list</h1>
+<%= link_to 'Create a new list', new_list_path(@list) %>
+<ul>
+  <% @lists.each do |lists| %>
+    <li><%= link_to lists.name, [list] %></li>
+  <% end %>
+</ul>
