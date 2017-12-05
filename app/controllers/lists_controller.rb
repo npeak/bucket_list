@@ -1,7 +1,8 @@
 class ListsController < ApplicationController
+  before_action :set_list, only: [:destroy, :show, :update ]
 
   def index
-    @list = List.all
+    @lists = List.all
   end
 
   def show
@@ -13,18 +14,27 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    @list.save
+    if @list.save
+      render json: @list
+    else 
+      render_error(@list)
+    end 
   end
 
   def edit
   end
 
   def update
-    @list.update(list_params)
+    if @list.update(list_params)
+      render json: @list
+    else 
+      render_error(@list)
+    end 
   end
   
   def destroy
     @list.destroy
+    render json: { message: 'removed' }, status: :ok
     # redirect_to sub_topics_path
   end
 
@@ -36,6 +46,10 @@ class ListsController < ApplicationController
   # def set_topic
   #   @topic = Topic.find(params[:id])
   # end
+
+  def set_list
+    @list = List.find(params[:id])
+  end 
 
   def list_params
     params.require(:topic).permit(:name, :body)
