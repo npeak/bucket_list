@@ -2,11 +2,10 @@ class DestinationsController < ApplicationController
   before_action :set_list only: [:index, :create]
   before_action :set_destination only: [:show, :update, :destroy]
   def index
-    @render json: @list.destination
+    @desitinations = desitinations.all 
   end
 
   def show
-    render json: @destination
   end
 
   def new
@@ -16,9 +15,9 @@ class DestinationsController < ApplicationController
   def create
     @destination = @list.destination.new(destination_params)
     if @destination.save
-      render json: @destination
+      redirect_to destinations_path
     else
-      render_error(@destination)
+      render :new 
     end 
   end
 
@@ -27,9 +26,9 @@ class DestinationsController < ApplicationController
 
   def update
     if @destination.update(destination_params)
-      render json: @destination
+      redirect_to destinations_path
     else 
-      render_error(@destination)
+      redirect_to :edit                                               stination)
     end 
   end
 
@@ -43,7 +42,7 @@ class DestinationsController < ApplicationController
     def set_list
       @list = List.find(params[:list_id])
     end 
-    
+
     def set_destination
       @destination = Destinations.find(params[:id])
     end 

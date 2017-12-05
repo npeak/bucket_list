@@ -15,9 +15,9 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      render json: @list
+      redirect_to lists_path
     else 
-      render_error(@list)
+      render :new
     end 
   end
 
@@ -26,15 +26,14 @@ class ListsController < ApplicationController
 
   def update
     if @list.update(list_params)
-      render json: @list
+      redirect_to lists_path
     else 
-      render_error(@list)
+      render :edit 
     end 
   end
   
   def destroy
     @list.destroy
-    render json: { message: 'removed' }, status: :ok
     # redirect_to sub_topics_path
   end
 
