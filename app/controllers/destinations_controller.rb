@@ -46,6 +46,6 @@ class DestinationsController < ApplicationController
       @destination = Destinations.find(params[:id])
     end 
     def destinations_params
-      params.require(:destination).permit(:body)
+      params.require(:destination).permit(:ttile)
     end
 end
