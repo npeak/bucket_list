@@ -34,7 +34,6 @@ class DestinationsController < ApplicationController
 
   def destroy
     @destinations.destroy
-    render json: {message: 'removed', status: :ok}
   end
 
   private 

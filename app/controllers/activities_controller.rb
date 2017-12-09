@@ -18,10 +18,20 @@ class ActivitiesController < ApplicationController
   end
 
   def update
-    @activites.update(activities_params)
+    if @activites.update(activities_params)
+      redirect_to activites_path
+    else 
+      render :edit 
+    end 
   end
 
   def destroy
     @activities.destroy
   end
+
+  private
+
+  def activites_params
+    params.require(:activty).permit(:name, :description)
+  end 
 end
