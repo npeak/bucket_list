@@ -2,7 +2,7 @@ class DestinationsController < ApplicationController
   before_action :set_list only: [:index, :create]
   before_action :set_destination only: [:show, :update, :destroy]
   def index
-    @desitinations = desitinations.all 
+    @destinations = destinations.all 
   end
 
   def show

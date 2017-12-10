@@ -1,2 +1,9 @@
-<h1>Activities#new</h1>
-<p>Find me in app/views/activities/new.html.erb</p>
+<h1><%= @activty.id ? 'Activity Topic' : 'Create activty' %></h1>
+<hr />
+<%= form_for [@list, @activity] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, required: true, autofocus: true %>
+  <%= f.submit %>
+<% end %>
+
+
