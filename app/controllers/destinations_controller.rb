@@ -1,19 +1,19 @@
 class DestinationsController < ApplicationController
-  before_action :set_list only: [:index, :create]
-  before_action :set_destination only: [:show, :update, :destroy]
+  before_action :set_list
+  before_action :set_desitnation, only: [:show, :edit, :update, :destroy]
   def index
-    @destinations = destinations.all 
+    @destinations = Destination.all 
   end
 
   def show
   end
 
   def new
-    @destinations = Destinations.new
+    @destinations = @list.destinations.new
   end
 
   def create
-    @destination = @list.destination.new(destination_params)
+    @destination = @list.destinations.new(destination_params)
     if @destination.save
       redirect_to destinations_path
     else
@@ -39,11 +39,11 @@ class DestinationsController < ApplicationController
   private 
 
     def set_list
-      @list = List.find(params[:list_id])
+      @list = List.find(params[:p])
     end 
 
     def set_destination
-      @destination = Destinations.find(params[:id])
+      @destination = Destination.find(params[:id])
     end 
     def destinations_params
       params.require(:destination).permit(:ttile)

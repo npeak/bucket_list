@@ -11,11 +11,12 @@ class ActivitiesController < ApplicationController
   end
 
   def new
+
     @activity = @list.activities.new
   end
 
   def create
-  
+
     @activity = @list.activities.new(activity_params)
 
     if @activity.save
@@ -45,7 +46,7 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :description)
+    params.require(:activity).permit(:title)
   end 
 
   def set_activity
@@ -53,7 +54,7 @@ class ActivitiesController < ApplicationController
   end 
 
   def set_list
-    binding.pry
+    
     @list = List.find(params[:list_id])
   end
 
