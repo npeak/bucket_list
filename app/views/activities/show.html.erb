@@ -1,2 +1,6 @@
-<h1>Activities#show</h1>
-<p>Find me in app/views/activities/show.html.erb</p>
+<h1><%= @list.title %> - <%= @activity.title %></h1>
+<%= link_to 'Edit', edit_list_activity_path([@list, @activity]) %>
+<br/>
+<%= link_to 'Delete', [@list, @activity], method: :delete %>
+<br />
+<%= link_to 'Back To activities', list_activities_path(@list) %>

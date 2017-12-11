@@ -9,43 +9,47 @@ class DestinationsController < ApplicationController
   end
 
   def new
-    @destinations = @list.destinations.new
+    @destination = Destination.new
+    render partial: "form"
   end
 
   def create
-    @destination = @list.destinations.new(destination_params)
+    @destination = @list.create_destination(destination_params)
+    #@destination = @list.destination.new(destination_params)
     if @destination.save
-      redirect_to destinations_path
+      redirect_to list_destinations_path
     else
-      render :new 
+      render partial: "form"  
     end 
   end
 
   def edit
+    render partial: "form"
   end
 
   def update
     if @destination.update(destination_params)
-      redirect_to destinations_path
+      redirect_to list_destination_path
     else 
-      redirect_to :edit                                               stination)
+      render :edit                                      
     end 
   end
 
   def destroy
-    @destinations.destroy
+    @destination.destroy
+    redirect_to list_destination_path 
   end
 
   private 
 
     def set_list
-      @list = List.find(params[:p])
+      @list = List.find(params[:list_id])
     end 
 
-    def set_destination
+    def set_desitnation
       @destination = Destination.find(params[:id])
     end 
-    def destinations_params
-      params.require(:destination).permit(:ttile)
+    def destination_params
+      params.require(:destination).permit(:title)
     end
 end

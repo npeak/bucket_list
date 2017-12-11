@@ -1,8 +1,9 @@
-<h1>Click a Topic To View Content</h1>
-<%= link_to 'Create a new topic', new_list_activity_path(@list) %>
+<h1>Click an activity To View Content</h1>
+<%= link_to 'Create an activity', new_list_activity_path(@list) %>
 <ul>
   <% @activities.each do |act| %>
     <li><%= link_to act.title, [@list, act] %></li>
   <% end %>
 </ul>
 
+<%= link_to 'Back to Lists', lists_path%>

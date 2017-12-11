@@ -4,15 +4,17 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    @activities = Activity.all
+    @activities = @list.activities
   end
 
   def show
   end
 
   def new
-
+ 
     @activity = @list.activities.new
+    render partial: "form"
+
   end
 
   def create
@@ -22,11 +24,12 @@ class ActivitiesController < ApplicationController
     if @activity.save
       redirect_to [@list, @activity]
     else
-      render :new
+      render parital: "form"
     end
   end
 
   def edit
+    render partial: "form"
   end
 
   def update
@@ -54,7 +57,6 @@ class ActivitiesController < ApplicationController
   end 
 
   def set_list
-    
     @list = List.find(params[:list_id])
   end
 

@@ -1,0 +1,9 @@
+<h1><%= @activity.id ? 'Edit' : 'Create' %></h1>
+<hr />
+<%= form_for [@list, @activity] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, required: true %>
+  <br />
+  
+  <%= f.submit %>
+<% end %>

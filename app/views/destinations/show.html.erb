@@ -1,2 +1,6 @@
-<h1>Destinations#show</h1>
-<p>Find me in app/views/destinations/show.html.erb</p>
+<h1><%= @list.title %> - <%= @destination.title %></h1>
+<%= link_to 'Edit', edit_list_destination_path([@list, @destination]) %>
+<br/>
+<%= link_to 'Delete', [@list, @destination], method: :delete %>
+<br />
+<%= link_to 'Back to destinations', list_destination_path(@list) %>
